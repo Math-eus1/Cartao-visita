@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão de visita</title>
+</head>
+<body>
+    <style>
+        .container {
+            height: 390px;
+            width: 460px;
+            margin-top: 30px;
+            background-color:whitesmoke;
+            border-radius: 20px;
+        }
+        body{
+            background-color: burlywood;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h2 {
+            padding-top: 20px;
+        }
+        .card {
+            padding-left: 10px;
+        }
+        input{
+            width: 280px;
+            height: 25px;
+        }
+        .button{
+            height: 30px;
+            width: 440px;
+            text-align: center;
+            background-color: rgb(165, 223, 91);
+            font-family: cursive;
+            display: grid;
+            justify-content: center;
+            justify-items: center;
+            border: solid;
+            border-radius: 13px;
+        }
+
+    </style>
+    <section class="container">
+        <div class="card">
+            <h2>Gerador de cartão de visita</h2>
+            <label for="name">Nome:</label> <br>
+            <input id="name" name="name" type="text" required placeholder="Digite seu nome..." >
+            <br>
+            <label for="ocupation">Ocupação:</label> <br>
+            <input id="ocupation" name="ocupation" type="text" required placeholder="Digite sua Ocupação profissional...">
+            <br>
+            <label for="phone">Telefone:</label> <br>
+            <input id="phone" name="phone" type="number" required placeholder="Digite seu Telefone...">
+            <br>
+            <label for="email">E-Mail:</label> <br>
+            <input id="email" name="email" type="email" required placeholder="Digite seu E-mail...">
+            <br><br>
+
+            <button type="submit" class="button">Gerar Cartão</button>
+        </div>
+        <div id="resultado"></div>
+
+    <script>
+        function gerarCartao (){
+            const nome = document.getElementById("name").value
+            const ocupacao = document.getElementById("ocupation").value
+            const telefone = document.getElementById("phone").value
+            const email = document.getElementById("email").value
+
+            if(nome&&ocupacao&&telefone&&email){
+                const card = document.createElement("div")
+                card.style.border = "solid"
+                card.style.borderRadius = "12px";
+                card.style.backgroundColor = "aquamarine";
+                card.style.fontFamily = "cursive";
+                card.style.marginTop = "25px";
+                card.style.padding = "8px"
+
+                card.innerHTML = `
+                Olá, me chamo ${nome}\n<br>
+                Ocupação profissional: ${ocupacao}\n<br>
+                Telefone par contato: ${telefone}\n<br>
+                E-Mail para contato: ${email}\n<br>
+                Desde já, agradeço o contato!!
+                `;
+
+                const resultado = document.getElementById("resultado")
+                resultado.innerHTML = ""
+                resultado.appendChild(card)
+            }else{
+                alert("Por favor, insira as informações para gerar o cartão")
+            }
+        }
+        document.querySelector(".button").addEventListener("click", gerarCartao);
+    </script>
+    </section>
+</body>
+</html>
